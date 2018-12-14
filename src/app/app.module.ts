@@ -15,10 +15,18 @@ import {
   MatSelectModule,
   MatToolbarModule
 } from '@angular/material';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { CustomerPageComponent } from './customer-page/customer-page.component';
+import { ClaimOfficerPageComponent } from './claim-officer-page/claim-officer-page.component';
+import { InspectOfficerPageComponent } from './inspect-officer-page/inspect-officer-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdminPageComponent,
+    CustomerPageComponent,
+    ClaimOfficerPageComponent,
+    InspectOfficerPageComponent
   ],
   imports: [
     BrowserModule,
