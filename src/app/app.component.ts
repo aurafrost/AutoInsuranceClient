@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +7,29 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 
-export interface Food {
-  value: string;
-  viewValue: string;
-}
+export class AppComponent implements OnInit {
+  constructor(private router: Router) {
+  }
 
-export class AppComponent {
-
-}
-
-export class SelectOverviewExample {
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+  ngOnInit(): void {
+    const user = sessionStorage.getItem('user');
+    console.log(user);
+    switch (user) {
+      case 'admin':
+        this.router.navigate(['admin']);
+        break;
+      case 'customer':
+        this.router.navigate(['customer']);
+        break;
+      case 'claim_cfficer':
+        this.router.navigate(['claim_officer']);
+        break;
+      case 'inspect_officer':
+        this.router.navigate(['inspect_officer']);
+        break;
+      default:
+        this.router.navigate(['cover']);
+        break;
+    }
+  }
 }
