@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./claim-officer-table.component.css']
 })
 export class ClaimOfficerTableComponent implements OnInit {
-  @Input() claimOfficers;
+  @Input() list;
 
   constructor() { }
 

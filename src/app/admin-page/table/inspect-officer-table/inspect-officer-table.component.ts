@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'inspect-officer-table',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inspect-officer-table.component.css']
 })
 export class InspectOfficerTableComponent implements OnInit {
-  private inspectOfficers;
+  @Input() list;
   constructor() { }
 
   ngOnInit() {

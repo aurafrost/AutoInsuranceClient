@@ -20,11 +20,13 @@ import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { ClaimOfficerPageComponent } from './claim-officer-page/claim-officer-page.component';
 import { InspectOfficerPageComponent } from './inspect-officer-page/inspect-officer-page.component';
 import { CoverPageComponent } from './cover-page/cover-page.component';
-import { CustomerTableComponent } from './admin-page/customer-table/customer-table.component';
-import { ClaimOfficerTableComponent } from './admin-page/claim-officer-table/claim-officer-table.component';
-import { InspectOfficerTableComponent } from './admin-page/inspect-officer-table/inspect-officer-table.component';
-import { ReportTableComponent } from './admin-page/report-table/report-table.component';
-import { ClaimTableComponent } from './admin-page/claim-table/claim-table.component';
+import { CustomerTableComponent } from './admin-page/table/customer-table/customer-table.component';
+import { ClaimOfficerTableComponent } from './admin-page/table/claim-officer-table/claim-officer-table.component';
+import { InspectOfficerTableComponent } from './admin-page/table/inspect-officer-table/inspect-officer-table.component';
+import { ReportTableComponent } from './admin-page/table/report-table/report-table.component';
+import { ClaimTableComponent } from './admin-page/table/claim-table/claim-table.component';
+import {UserService} from './service/user/user.service';
+import { UserDialogComponent } from './admin-page/dialog/user-dialog/user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { ClaimTableComponent } from './admin-page/claim-table/claim-table.compon
     ClaimOfficerTableComponent,
     InspectOfficerTableComponent,
     ReportTableComponent,
-    ClaimTableComponent
+    ClaimTableComponent,
+    UserDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { ClaimTableComponent } from './admin-page/claim-table/claim-table.compon
     MatCardModule,
     MatRadioModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [UserService],
+  bootstrap: [AppComponent],
+  entryComponents: [UserDialogComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'claim-table',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./claim-table.component.css']
 })
 export class ClaimTableComponent implements OnInit {
-  private claims;
+  @Input() list;
 
   constructor() { }
 

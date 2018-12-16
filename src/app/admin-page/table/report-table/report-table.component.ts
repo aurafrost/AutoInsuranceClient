@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'report-table',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./report-table.component.css']
 })
 export class ReportTableComponent implements OnInit {
+  @Input() list;
 
   constructor() { }
 
