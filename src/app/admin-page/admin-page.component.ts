@@ -13,16 +13,15 @@ import {Router} from '@angular/router';
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.css']
 })
-export class AdminPageComponent implements OnInit, OnChanges {
+export class AdminPageComponent implements OnInit {
   private type = 'Customers';
   private list: any = [];
-  private search: any;
+  private search =' ';
   addUserDialogRef: MatDialogRef<UserDialogComponent>;
 
   // TODO: Use to switch side bar to top dropdown
   isMobile: Observable<BreakpointState> = this.breakpointObserver
     .observe(['(max-width: 768px)']);
-    // (Breakpoints.Handset);
 
   constructor(
     private $router: Router,
@@ -46,10 +45,6 @@ export class AdminPageComponent implements OnInit, OnChanges {
 
   handleListChange(list) {
     this.list = list;
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 
   openDialog() {
@@ -105,7 +100,8 @@ export class AdminPageComponent implements OnInit, OnChanges {
 
   handleSearch() {
     this.list = [];
-    console.log(`${this.type}: ${this.search}`);
+
+    console.log(this.search);
     switch (this.type) {
       case 'Customers':
         return this.userHttp.getUserByIdAndType('Customer', this.search)
