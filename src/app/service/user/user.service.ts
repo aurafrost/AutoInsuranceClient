@@ -17,6 +17,10 @@ export class UserService {
     return this.http.get(`${BASE_URL}/users/id/${id}`);
   }
 
+  getUserByIdAndType(type, id) {
+    return this.http.get(`${BASE_URL}/users/${type}/${id}`);
+  }
+
   getUserByEmail(email) {
     return this.http.get(`${BASE_URL}/users/${email}`);
   }
@@ -42,4 +46,11 @@ export class UserService {
     return this.http.delete(`${BASE_URL}/users/${email}`);
   }
 
+  updateUserStatus(status, id) {
+    if (status = 'Active') {
+      return this.http.put(`${BASE_URL}/users/${id}/status`, {status: 'Deactive'});
+    } else {
+      return this.http.put(`${BASE_URL}/users/${id}/status`, {status: 'Active'});
+    }
+  }
 }

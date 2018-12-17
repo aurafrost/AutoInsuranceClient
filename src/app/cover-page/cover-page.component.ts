@@ -20,6 +20,19 @@ export class CoverPageComponent implements OnInit {
   constructor(private $router: Router) { }
 
   ngOnInit() {
+    const user = sessionStorage.getItem('user');
+    switch (user) {
+      case 'admin':
+        return this.$router.navigate(['admin']);
+      case 'customer':
+        return this.$router.navigate(['customer']);
+      case 'claim_officer':
+        return this.$router.navigate(['claim_officer']);
+      case 'inspect_officer':
+        return this.$router.navigate(['inspect_officer']);
+      default:
+        return this.$router.navigate(['cover']);
+    }
   }
 
   handleSelectChange() {

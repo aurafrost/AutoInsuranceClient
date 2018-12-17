@@ -1,11 +1,6 @@
-<body cz-shortcut-listen="true" class="">
-<mobile-menu
-  *ngIf="(isMobile | async)!.matches"
-  (_type)="handleTypeChange($event)"
-  (_list)="handleListChange($event)"></mobile-menu>
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+<mat-toolbar style="z-index: 10; width: 100%">
+  <button *ngIf="(isMobile | async)!.matches" mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
       <div class="sidebar-sticky">
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Users</span>
@@ -78,34 +73,5 @@
           </li>
         </ul>
       </div>
-    </nav>
-
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">{{type}}</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <button
-              *ngIf="type === 'Customers' || type === 'Claim Officers' || type === 'Inspect Officers'"
-              (click)="openDialog(type)" class="btn btn-sm btn-outline-secondary">Create</button>
-          </div>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <button (click)="handleSearch(type)" class="btn btn-sm btn-outline-secondary">Search</button>
-            </div>
-            <input [(ngModel)]="search" type="text" class="form-control" placeholder="By ID" aria-label="Input group example" aria-describedby="btnGroupAddon">
-          </div>
-        </div>
-      </div>
-
-      <div class="table-responsive">
-        <customer-table [list]="list" *ngIf="type === 'Customers'"></customer-table>
-        <claim-officer-table [list]="list"  *ngIf="type === 'Claim Officers'"></claim-officer-table>
-        <inspect-officer-table [list]="list" *ngIf="type === 'Inspect Officers'"></inspect-officer-table>
-        <claim-table [list]="list" *ngIf="type === 'Claims'"></claim-table>
-        <report-table [list]="list" *ngIf="type === 'Reports'"></report-table>
-      </div>
-    </main>
-  </div>
-</div>
-</body>
+  </mat-menu>
+</mat-toolbar>

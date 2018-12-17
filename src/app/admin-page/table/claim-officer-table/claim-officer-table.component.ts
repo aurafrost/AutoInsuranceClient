@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {UserService} from '../../../service/user/user.service';
 
 @Component({
   selector: 'claim-officer-table',
@@ -8,9 +9,19 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ClaimOfficerTableComponent implements OnInit {
   @Input() list;
 
-  constructor() { }
+  constructor(
+    private userHttp: UserService
+  ) { }
 
   ngOnInit() {
+  }
+
+  handleAction(status) {
+    if (status === 'Active') {
+      // this.userHttp.
+    } else {
+      // this.userHttp.
+    }
   }
 
 }

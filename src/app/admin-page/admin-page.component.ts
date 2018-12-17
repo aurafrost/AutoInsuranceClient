@@ -1,4 +1,4 @@
-import {Component, KeyValueChanges, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../service/user/user.service';
 import {ReportService} from '../service/report/report.service';
 import {ClaimService} from '../service/claim/claim.service';
@@ -21,7 +21,8 @@ export class AdminPageComponent implements OnInit, OnChanges {
 
   // TODO: Use to switch side bar to top dropdown
   isMobile: Observable<BreakpointState> = this.breakpointObserver
-    .observe(Breakpoints.Handset);
+    .observe(['(max-width: 768px)']);
+    // (Breakpoints.Handset);
 
   constructor(
     private $router: Router,
@@ -37,6 +38,14 @@ export class AdminPageComponent implements OnInit, OnChanges {
     if (user !== 'admin') {
       return this.$router.navigate(['cover']);
     }
+  }
+
+  handleTypeChange(type) {
+    this.type = type;
+  }
+
+  handleListChange(list) {
+    this.list = list;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -82,14 +91,14 @@ export class AdminPageComponent implements OnInit, OnChanges {
       // case 'Reports':
       //   return this.reportHttp.getReports()
       //     .subscribe(data => {
-      //       this.list = data;
-      //       console.log(this.list);
+      //       this._list = data;
+      //       console.log(this._list);
       //     });
       // case 'Claims':
       //   return this.claimHttp.getClaims()
       //     .subscribe(data => {
-      //       this.list = data;
-      //       console.log(this.list);
+      //       this._list = data;
+      //       console.log(this._list);
       //     });
     }
   }
@@ -99,35 +108,40 @@ export class AdminPageComponent implements OnInit, OnChanges {
     console.log(`${this.type}: ${this.search}`);
     switch (this.type) {
       case 'Customers':
-        return this.userHttp.getUserByID(this.search)
+        return this.userHttp.getUserByIdAndType('Customer', this.search)
           .subscribe(data => {
-            console.log(data);
-            this.list[0] = data;
-            console.log(this.list);
+            if (data) {
+              this.list[0] = data;
+              console.log(this.list);
+            }
           });
       case 'Claim Officers':
-        return this.userHttp.getUserByID(this.search)
+        return this.userHttp.getUserByIdAndType('ClaimOfficer', this.search)
           .subscribe(data => {
-            this.list[0] = data;
-            console.log(this.list);
+            if (data) {
+              this.list[0] = data;
+              console.log(this.list);
+            }
           });
       case 'Inspect Officers':
-        return this.userHttp.getUserByID(this.search)
+        return this.userHttp.getUserByIdAndType('InspectOfficer', this.search)
           .subscribe(data => {
-            this.list[0] = data;
-            console.log(this.list);
+            if (data) {
+              this.list[0] = data;
+              console.log(this.list);
+            }
           });
       // case 'Reports':
       //   return this.reportHttp.getReportByID()
       //     .subscribe(data => {
-      //       this.list = data;
-      //       console.log(this.list);
+      //       this._list = data;
+      //       console.log(this._list);
       //     });
       // case 'Claims':
       //   return this.claimHttp.getClaimByID()
       //     .subscribe(data => {
-      //       this.list = data;
-      //       console.log(this.list);
+      //       this._list = data;
+      //       console.log(this._list);
       //     });
     }
   }

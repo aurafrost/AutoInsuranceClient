@@ -12,7 +12,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatMenuModule, MatRadioModule,
-  MatSelectModule,
+  MatSelectModule, MatSliderModule, MatSlideToggleModule,
   MatToolbarModule
 } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -27,6 +27,7 @@ import { ReportTableComponent } from './admin-page/table/report-table/report-tab
 import { ClaimTableComponent } from './admin-page/table/claim-table/claim-table.component';
 import {UserService} from './service/user/user.service';
 import { UserDialogComponent } from './admin-page/dialog/user-dialog/user-dialog.component';
+import { MobileMenuComponent } from './admin-page/menu/mobile-menu/mobile-menu.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UserDialogComponent } from './admin-page/dialog/user-dialog/user-dialog
     InspectOfficerTableComponent,
     ReportTableComponent,
     ClaimTableComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    MobileMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,9 @@ import { UserDialogComponent } from './admin-page/dialog/user-dialog/user-dialog
     MatToolbarModule,
     MatDialogModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent],
