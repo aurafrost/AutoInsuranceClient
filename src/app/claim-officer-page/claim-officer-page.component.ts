@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim } from '../model/Claim';
+import { ClaimHandlerService } from '../claim-handler.service';
 
 @Component({
   selector: 'claim-officer-page',
@@ -11,28 +12,39 @@ export class ClaimOfficerPageComponent implements OnInit {
   c:Claim=new Claim();
   claimTable:HTMLElement;
   inspectorTable:HTMLElement;
-  claimOfficer:String;
+  claim:Claim;
 
-  //need to add a service parameter
-  constructor() { }
+  constructor(private service: ClaimHandlerService) { }
 
   ngOnInit() {
-    //this.service.getClaims().subscribe(data=>{this.claims=data;});
+    this.service.getClaims().subscribe(data=>{this.claims=data;});
   }
-  showInspectors(claimId){
+  showInspectors(claim){
+    this.claim=claim; //stored to be used in assignInspector
     this.claimTable=document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display='none';
     this.inspectorTable=document.getElementById('inspectorTable') as HTMLElement;
     this.inspectorTable.style.display='block';
   }
   assignInspector(lname){
-    this.claimOfficer=lname;
+    //issue below. claimOfficer is in the report table. Need to discuss how to handle.
+    //this.claim.claimOfficer=lname;
+    
     //TODO send to database
+    this.service.updateClaimByInspector(this.claim,this.claim.claimId);
+    this.claimTable=document.getElementById('claimTable') as HTMLElement;
+    this.claimTable.style.display='block';
+    this.inspectorTable=document.getElementById('inspectorTable') as HTMLElement;
+    this.inspectorTable.style.display='hide';
   }
-  approve(claimId){
-
+  approve(claim){
+    this.claim=claim;
+    this.claim.status="Approved";
+    this.service.updateClaim(claim,this.claim.claimId);
   }
-  decline(claimId){
-
+  decline(claim){
+    this.claim=claim;
+    this.claim.status="Declined";
+    this.service.updateClaim(claim,this.claim.claimId);
   }
 }

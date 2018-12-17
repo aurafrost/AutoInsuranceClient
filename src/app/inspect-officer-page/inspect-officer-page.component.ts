@@ -10,6 +10,7 @@ export class InspectOfficerPageComponent implements OnInit {
   reports:Report[];
   reportTable:HTMLElement;
   reportForm:HTMLElement;
+  claimId:number;
 
   //need service
   constructor() { }
@@ -19,9 +20,18 @@ export class InspectOfficerPageComponent implements OnInit {
   }
 
   showForm(claimId){
+    this.claimId=claimId; //for use in submitReport()
     this.reportTable=document.getElementById('reportTable') as HTMLElement;
     this.reportTable.style.display='none';
     this.reportForm=document.getElementById('reportForm') as HTMLElement;
     this.reportForm.style.display='block';
+  }
+  submitReport(){
+    //send report to database
+
+    this.reportTable=document.getElementById('reportTable') as HTMLElement;
+    this.reportTable.style.display='block';
+    this.reportForm=document.getElementById('reportForm') as HTMLElement;
+    this.reportForm.style.display='none';
   }
 }

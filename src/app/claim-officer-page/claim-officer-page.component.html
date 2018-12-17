@@ -1,4 +1,4 @@
-<h2>Welcome claim officer {{name}}!</h2>
+<h2>Welcome claim officer!</h2>
 <div id=claimTable>
   <table>
     <tr>
@@ -11,7 +11,7 @@
       <th>Incident Description</th>
       <th>Estimate</th>
       <th>Claim Status</th>
-      <th>Assigned Officer</th> <!-- From report table? -->
+      <!--<th>Assigned Officer</th>From report table? -->
       <th>Assign</th>
       <th>Approve</th>
       <th>Decline</th>
@@ -26,10 +26,10 @@
       <td>{{c.description}}</td>
       <td>{{c.estimateCostRepairs}}</td>
       <td>{{c.status}}</td>
-      <td>{{c.claimOfficer}}</td>
-      <td><button (click)='showInspectors(c.claimId)'>Assign</button></td>
-      <td><button (click)='approve(c.claimId)'>Approve</button></td>
-      <td><button (click)='decline(c.claimId)'>Decline</button></td>
+      <!--<td>{{c.claimOfficer}}</td>-->
+      <td><button (click)='showInspectors(c)'>Assign</button></td>
+      <td><button (click)='approve(c)'>Approve</button></td>
+      <td><button (click)='decline(c)'>Decline</button></td>
     </tr>
   </table>
 </div>
@@ -41,7 +41,7 @@
       <th>Select</th>
     </tr>
     <tr *ngFor="let u of users"><!--I'm not sure this works. Probably not-->
-      <td>{{u.name}}</td>
+      <td>{{u.lname}}</td>
       <td><button (click)='assignInspector(u.lname)'>Assign</button></td>
     </tr>
   </table>
