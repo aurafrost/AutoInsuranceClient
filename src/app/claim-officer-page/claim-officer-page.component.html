@@ -1,3 +1,48 @@
-<p>
-  claim-officer-page works!
-</p>
+<h2>Welcome claim officer {{name}}!</h2>
+<div id=claimTable>
+  <table>
+    <tr>
+      <th>Claim ID</th>
+      <th>User ID<!-- Maybe Claimant would be better? --></th>
+      <th>Car Model</th>
+      <th>Car Make</th>
+      <th>Date of Incident</th>
+      <th>Driver's License of other Driver</th>
+      <th>Incident Description</th>
+      <th>Estimate</th>
+      <th>Claim Status</th>
+      <th>Assigned Officer</th> <!-- From report table? -->
+      <th>Assign</th>
+      <th>Approve</th>
+      <th>Decline</th>
+    </tr>
+    <tr *ngFor="let c of claims">
+      <td>{{c.claimId}</td>
+      <td>{{c.userId}}</td>
+      <td>{{c.carModel}}</td>
+      <td>{{c.carMake}}</td>
+      <td>{{c.dateOfIncident}}</td>
+      <td>{{c.otherDriverLicense}}</td>
+      <td>{{c.description}}</td>
+      <td>{{c.estimateCostRepairs}}</td>
+      <td>{{c.status}}</td>
+      <td>{{c.claimOfficer}}</td>
+      <td><button (click)='showInspectors(c.claimId)'>Assign</button></td>
+      <td><button (click)='approve(c.claimId)'>Approve</button></td>
+      <td><button (click)='decline(c.claimId)'>Decline</button></td>
+    </tr>
+  </table>
+</div>
+
+<div id='inspectorTable' style="display:none">
+  <table>
+    <tr>
+      <th>Inspector Name</th>
+      <th>Select</th>
+    </tr>
+    <tr *ngFor="let u of users"><!--I'm not sure this works. Probably not-->
+      <td>{{u.name}}</td>
+      <td><button (click)='assignInspector(u.lname)'>Assign</button></td>
+    </tr>
+  </table>
+</div>
