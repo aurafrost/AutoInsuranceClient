@@ -16,12 +16,10 @@ export class ClaimOfficerTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleAction(status) {
-    if (status === 'Active') {
-      // this.userHttp.
-    } else {
-      // this.userHttp.
-    }
+  handleAction = (user) => {
+    this.userHttp.updateUserStatus(user)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
-
 }

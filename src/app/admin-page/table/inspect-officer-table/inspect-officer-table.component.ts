@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {UserService} from '../../../service/user/user.service';
 
 @Component({
   selector: 'inspect-officer-table',
@@ -7,9 +8,16 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class InspectOfficerTableComponent implements OnInit {
   @Input() list;
-  constructor() { }
+  constructor(
+    private userHttp: UserService
+  ) { }
 
   ngOnInit() {
   }
-
+  handleAction = (user) => {
+    this.userHttp.updateUserStatus(user)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
 }

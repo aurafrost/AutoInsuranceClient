@@ -6,7 +6,6 @@ import {BASE_URL} from '../../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  headers = new HttpHeaders();
   constructor(private http: HttpClient) { }
 
   getUsers() {
@@ -30,8 +29,9 @@ export class UserService {
   }
 
   postUser(user) {
-    this.headers.append('Access-Control-Allow-Origin', '*');
-    return this.http.post(`${BASE_URL}/users`, user, {headers: this.headers});
+    const headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin', '*');
+    return this.http.post(`${BASE_URL}/users`, user, {headers: headers});
   }
 
   putUser(id, user) {
@@ -46,11 +46,16 @@ export class UserService {
     return this.http.delete(`${BASE_URL}/users/${email}`);
   }
 
-  updateUserStatus(status, id) {
-    if (status = 'Active') {
-      return this.http.put(`${BASE_URL}/users/${id}/status`, {status: 'Deactive'});
-    } else {
-      return this.http.put(`${BASE_URL}/users/${id}/status`, {status: 'Active'});
+  updateUserStatus(user) {
+    const headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin', '*');
+    if (user.status === 'Active') {
+      user.status = 'Deactive';
+      return this.http.put(`${BASE_URL}/users/${user.userId}/status`, user, {headers: headers});
+    }
+    if (user.status === 'Deactive') {
+      user.status = 'Active';
+      return this.http.put(`${BASE_URL}/users/${user.userId}/status`, user, {headers: headers});
     }
   }
 }

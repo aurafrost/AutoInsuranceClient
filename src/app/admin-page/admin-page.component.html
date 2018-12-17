@@ -93,10 +93,11 @@
             <div class="input-group-prepend">
               <button (click)="handleSearch(type)" class="btn btn-sm btn-outline-secondary">Search</button>
             </div>
-            <input [(ngModel)]="search" type="text" class="form-control" placeholder="By ID" aria-label="Input group example" aria-describedby="btnGroupAddon">
+            <input [(ngModel)]="search"  type="text" class="form-control" placeholder="By ID" aria-label="Input group example" aria-describedby="btnGroupAddon">
           </div>
         </div>
       </div>
+
 
       <div class="table-responsive">
         <customer-table [list]="list" *ngIf="type === 'Customers'"></customer-table>
