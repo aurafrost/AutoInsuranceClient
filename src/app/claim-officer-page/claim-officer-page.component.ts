@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim } from '../model/Claim';
-import { ClaimHandlerService } from '../claim-handler.service';
+import { ClaimService } from '../service/claim/claim.service';
 
 @Component({
   selector: 'claim-officer-page',
@@ -14,7 +14,7 @@ export class ClaimOfficerPageComponent implements OnInit {
   inspectorTable:HTMLElement;
   claim:Claim;
 
-  constructor(private service: ClaimHandlerService) { }
+  constructor(private service: ClaimService) { }
 
   ngOnInit() {
     this.service.getClaims().subscribe(data=>{this.claims=data;});
