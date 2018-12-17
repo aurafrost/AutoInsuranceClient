@@ -30,7 +30,7 @@ export class ClaimOfficerPageComponent implements OnInit {
     //issue below. claimOfficer is in the report table. Need to discuss how to handle.
     //this.claim.claimOfficer=lname;
     
-    //TODO send to database
+    //TODO send to database. Not sure this works
     this.service.updateClaimByInspector(this.claim,this.claim.claimId);
     this.claimTable=document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display='block';
