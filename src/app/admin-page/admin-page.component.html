@@ -2,7 +2,8 @@
 <mobile-menu
   *ngIf="(isMobile | async)!.matches"
   (_type)="handleTypeChange($event)"
-  (_list)="handleListChange($event)"></mobile-menu>
+  (_list)="handleListChange($event)">
+</mobile-menu>
 <div class="container-fluid">
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">

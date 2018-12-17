@@ -12,7 +12,6 @@ import {ClaimService} from '../../../service/claim/claim.service';
   styleUrls: ['./mobile-menu.component.css']
 })
 export class MobileMenuComponent implements OnInit {
-  private type;
   @Output() _type = new EventEmitter();
   @Output() _list = new EventEmitter();
 
@@ -36,10 +35,8 @@ export class MobileMenuComponent implements OnInit {
   }
 
   handleChange = (e) => {
-    // this._list = [];
-    this.type = e.target.name;
     this._type.emit(e.target.name);
-    switch (this._type.toString()) {
+    switch ( e.target.name) {
       case 'Customers':
         return this.userHttp.getUsersByType('customers')
           .subscribe(data => {

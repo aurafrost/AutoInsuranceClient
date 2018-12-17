@@ -16,10 +16,10 @@ import {Router} from '@angular/router';
 export class AdminPageComponent implements OnInit {
   private type = 'Customers';
   private list: any = [];
-  private search =' ';
+  private search = '';
   addUserDialogRef: MatDialogRef<UserDialogComponent>;
 
-  // TODO: Use to switch side bar to top dropdown
+  // TODO: Use to switch side bar to top drop down
   isMobile: Observable<BreakpointState> = this.breakpointObserver
     .observe(['(max-width: 768px)']);
 
@@ -34,17 +34,19 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit() {
     const user = sessionStorage.getItem('user');
-    if (user !== 'admin') {
+    if (user !== 'ADMIN') {
       return this.$router.navigate(['cover']);
     }
   }
 
   handleTypeChange(type) {
     this.type = type;
+    console.log(this.type);
   }
 
   handleListChange(list) {
     this.list = list;
+    console.log(this.list);
   }
 
   openDialog() {
