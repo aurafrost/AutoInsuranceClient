@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     const user = sessionStorage.getItem('user');
     console.log(user);
     switch (user) {
-      case 'admin':
+      case 'ADMIN':
         this.router.navigate(['admin']);
         break;
       case 'customer':

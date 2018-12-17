@@ -22,11 +22,19 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
+    <div *ngIf="user === 'admin'" class="example-container">
+      <mat-form-field>
+        <input [(ngModel)]="adminSecret" matInput placeholder="Secret">
+      </mat-form-field>
+      <br>
+      <button (click)="handleAdminSubmit()" mat-raised-button type="submit" mat-button>Submit</button>
+    </div>
   </main>
 
   <footer class="mastfoot mt-auto">
     <div class="inner">
-      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <!--<p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>-->
     </div>
   </footer>
 </div>
