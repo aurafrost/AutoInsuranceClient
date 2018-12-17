@@ -15,7 +15,8 @@
     <td>{{user.email}}</td>
     <td>{{user.phone}}</td>
     <td class="nav-item">
-      <mat-slide-toggle (toggleChange)="handleAction(user.status)" [checked]="user.status === 'Active'?'checked':null">{{user.status}}</mat-slide-toggle>
+      <mat-slide-toggle (change)="handleAction(user)" [checked]="user.status === 'Active'?'checked':null">
+        {{user.status}}</mat-slide-toggle>
     </td>
   </tr>
   </tbody>
