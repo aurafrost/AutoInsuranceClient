@@ -1,3 +1,22 @@
-<p>
-  inspect-officer-page works!
-</p>
+<h2>Welcome inspector {{name}}!</h2>
+<div id=reportTable>
+  <table>
+    <tr>
+      <th>Claim ID</th>
+      <th>Policy Number</th>
+      <th>Email</th>
+      <th>Claim Officer</th>
+      <th>View Claim</th>
+    </tr>
+    <tr *ngFor="let r of reports">
+      <td>{{r.claimId}</td>
+      <td>{{r.policyNo}}</td>
+      <td>{{r.insuredEmail}}</td>
+      <td>{{r.claimOfficer}}</td>
+      <td><button (click)='showForm(r.claimId)'>View</button></td>
+    </tr>
+  </table>
+</div>
+<div id='reportForm'>
+
+</div>
