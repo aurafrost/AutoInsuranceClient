@@ -1,0 +1,33 @@
+<body class="text-center" cz-shortcut-listen="true">
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">Welcome</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link" href="#">About Us</a>
+        <a class="nav-link" href="#">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">Auto Insurance</h1>
+    <p>Customers, Claim Officers and Inspect Officers can create an account and login to view reports and manage claims.</p>
+    <mat-form-field>
+      <mat-select [(ngModel)]="type" placeholder="Select User Type" (selectionChange)="handleSelectChange()">
+        <mat-option *ngFor="let t of userCategories" [value]="t.value">
+          {{t.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </main>
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    </div>
+  </footer>
+</div>
+</body>
