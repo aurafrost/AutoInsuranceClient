@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {ADMIN_SECRET} from '../../environments/environment';
 
 @Component({
   selector: 'cover-page',
@@ -9,6 +10,8 @@ import {Router} from '@angular/router';
 
 export class CoverPageComponent implements OnInit {
   private type: string;
+  private user: any;
+  private adminSecret = '';
 
   userCategories: any[] = [
     {value: 'Admin', viewValue: 'Admin'},
@@ -17,7 +20,8 @@ export class CoverPageComponent implements OnInit {
     {value: 'InspectOfficer', viewValue: 'Inspect Officer'}
   ];
 
-  constructor(private $router: Router) { }
+  constructor(private $router: Router) {
+  }
 
   ngOnInit() {
     const user = sessionStorage.getItem('user');
@@ -35,22 +39,47 @@ export class CoverPageComponent implements OnInit {
     }
   }
 
+  handleAdminSubmit() {
+    if (this.adminSecret === ADMIN_SECRET) {
+      sessionStorage.setItem('user', 'admin');
+      return this.$router.navigate(['admin']);
+    }
+  }
+
+  handleCustomerSubmit() {
+   console.log('Customer Submit');
+    sessionStorage.setItem('user', 'customer');
+    return this.$router.navigate(['customer']);
+  }
+
+
+  handleClaimOfficerSubmit() {
+    console.log('Claim Officer Submit');
+    sessionStorage.setItem('user', 'claim_officer');
+    return this.$router.navigate(['claim_officer']);
+  }
+
+  handleInspectOfficerSubmit() {
+    console.log('Inspect Officer Submit');
+    sessionStorage.setItem('user', 'inspect_officer');
+    return this.$router.navigate(['inspect_officer']);
+  }
+
   handleSelectChange() {
     switch (this.type) {
       case 'Admin':
-        sessionStorage.setItem('user', 'admin');
-        return this.$router.navigate(['admin']);
+        return this.user = 'admin';
       case 'Customer':
-        sessionStorage.setItem('user', 'customer');
-        return this.$router.navigate(['customer']);
+        this.user = 'customer';
+        return this.handleCustomerSubmit();
       case 'ClaimOfficer':
-        sessionStorage.setItem('user', 'claim_officer');
-        return this.$router.navigate(['claim_officer']);
+        this.user = 'claim_officer';
+        return this.handleClaimOfficerSubmit();
       case 'InspectOfficer':
-        sessionStorage.setItem('user', 'inspect_officer');
-        return this.$router.navigate(['inspect_officer']);
+        this.user = 'inspect_officer';
+        return this.handleInspectOfficerSubmit();
       default:
-        sessionStorage.setItem('user', '');
+        this.user = null;
         return this.$router.navigate(['cover']);
     }
   }
