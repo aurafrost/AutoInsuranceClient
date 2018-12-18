@@ -21,7 +21,8 @@ export class ClaimOfficerPageComponent implements OnInit {
 
   constructor(
     private claimService: ClaimService,
-    private userService: UserService
+    private userService: UserService,
+    private reportService: ReportService
   ) { }
 
   ngOnInit() {
@@ -29,7 +30,7 @@ export class ClaimOfficerPageComponent implements OnInit {
     this.userService.getUsersByType('inspect_officers')
           .subscribe(data => {
             this.users = data;
-            console.log(this.users);
+            //console.log(this.users);
           });
   }
   showInspectors(claim){
