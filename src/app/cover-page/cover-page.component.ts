@@ -52,6 +52,7 @@ export class CoverPageComponent implements OnInit {
     return this.$router.navigate(['customer']);
   }
 
+
   handleClaimOfficerSubmit() {
     console.log('Claim Officer Submit');
     sessionStorage.setItem('user', 'claim_officer');

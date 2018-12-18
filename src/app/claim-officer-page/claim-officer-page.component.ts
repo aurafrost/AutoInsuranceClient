@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim } from '../model/Claim';
 import { ClaimService } from '../service/claim/claim.service';
+import {Router, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'claim-officer-page',
@@ -14,11 +15,19 @@ export class ClaimOfficerPageComponent implements OnInit {
   inspectorTable:HTMLElement;
   claim:Claim;
 
-  constructor(private service: ClaimService) { }
+  constructor(
+    private $router: Router,
+    private service: ClaimService) { }
 
   ngOnInit() {
     this.service.getClaims().subscribe(data=>{this.claims=data;});
   }
+
+  handleLogout() {
+    sessionStorage.removeItem('user');
+    return this.$router.navigate(['cover']);
+  }
+
   showInspectors(claim){
     this.claim=claim; //stored to be used in assignInspector
     this.claimTable=document.getElementById('claimTable') as HTMLElement;
