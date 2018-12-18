@@ -32,7 +32,7 @@ export class ClaimOfficerPageComponent implements OnInit {
     this.userService.getUsersByType('inspect_officers')
           .subscribe(data => {
             this.users = data;
-            console.log(this.users);
+            //console.log(this.users);
           });
   }
 

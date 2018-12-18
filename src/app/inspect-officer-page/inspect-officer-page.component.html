@@ -14,6 +14,7 @@
       <th>Claim ID</th>
       <th>Policy Number</th>
       <th>Email</th>
+      <th>Phone</th>
       <th>Claim Officer</th>
       <th>View Claim</th>
     </tr>
@@ -21,12 +22,14 @@
       <td>{{r.claimId}</td>
       <td>{{r.policyNo}}</td>
       <td>{{r.insuredEmail}}</td>
+      <td>{{r.insuredPhone}}</td>
       <td>{{r.claimOfficer}}</td>
       <td><button (click)='showForm(r.claimId)'>View</button></td>
     </tr>
   </table>
 </div>
 <div id='reportForm' style='display: none'>
-  <textarea rows='50' cols='100'></textarea><br>
-  <input type='submit' value='Submit Report'>
+  <input type='text' id='estimate'><!-- Estimated cost of repairs goes here. -->
+  <textarea id='evaluation' rows='50' cols='100'></textarea><br>
+  <button (click)='submitReport(estimate,evaluation)'>Submit Report</button>
 </div>
