@@ -34,7 +34,7 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit() {
     const user = sessionStorage.getItem('user');
-    if (user !== 'ADMIN') {
+    if (user !== 'admin') {
       return this.$router.navigate(['cover']);
     }
   }
