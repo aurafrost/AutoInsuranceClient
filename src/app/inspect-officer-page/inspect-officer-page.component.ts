@@ -5,6 +5,7 @@ import {UserService} from '../service/user/user.service';
 import {ReportService} from '../service/report/report.service';
 import {ClaimService} from '../service/claim/claim.service';
 import { User } from '../model/User';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'inspect-officer-page',
@@ -22,20 +23,27 @@ export class InspectOfficerPageComponent implements OnInit {
   constructor(
     private claimService: ClaimService,
     private userService: UserService,
-    private reportService: ReportService
+    private reportService: ReportService,
+    private $router: Router
   ) { }
 
   ngOnInit() {
     this.reportService.getReports().subscribe(data=>{this.reports=data;});
   }
 
-  showForm(claimId){
-    this.claimId=claimId; //for use in submitReport()
-    this.reportTable=document.getElementById('reportTable') as HTMLElement;
-    this.reportTable.style.display='none';
-    this.reportForm=document.getElementById('reportForm') as HTMLElement;
-    this.reportForm.style.display='block';
+  handleLogout() {
+    sessionStorage.removeItem('user');
+    return this.$router.navigate(['cover']);
   }
+
+  showForm(claimId) {
+    this.claimId = claimId; // for use in submitReport()
+    this.reportTable = document.getElementById('reportTable') as HTMLElement;
+    this.reportTable.style.display = 'none';
+    this.reportForm = document.getElementById('reportForm') as HTMLElement;
+    this.reportForm.style.display = 'block';
+  }
+
   submitReport(estimate,evaluation){
     //send report to database
     //this.reportService.postReport(report); //missing report evaluation column. Also not sure how to send estimate. Can't add this line yet.

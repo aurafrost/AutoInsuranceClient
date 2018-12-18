@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim } from '../model/Claim';
+
 import {UserService} from '../service/user/user.service';
 import {ReportService} from '../service/report/report.service';
 import {ClaimService} from '../service/claim/claim.service';
 import { User } from '../model/User';
+import {Router, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'claim-officer-page',
@@ -21,9 +23,9 @@ export class ClaimOfficerPageComponent implements OnInit {
 
   constructor(
     private claimService: ClaimService,
-    private userService: UserService,
-    private reportService: ReportService
-  ) { }
+    private userService: UserService
+    private $router: Router,
+    ) { }
 
   ngOnInit() {
     this.claimService.getClaims().subscribe(data=>{this.claims=data;});
@@ -33,6 +35,12 @@ export class ClaimOfficerPageComponent implements OnInit {
             //console.log(this.users);
           });
   }
+
+  handleLogout() {
+    sessionStorage.removeItem('user');
+    return this.$router.navigate(['cover']);
+  }
+
   showInspectors(claim){
     this.claim=claim; //stored to be used in assignInspector
 
