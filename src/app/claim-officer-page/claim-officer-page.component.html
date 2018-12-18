@@ -26,7 +26,7 @@
       <th>Decline</th>
     </tr>
     <tr *ngFor="let c of claims">
-      <td>{{c.claimId}</td>
+      <td>{{c.claimId}}</td>
       <td>{{c.userId}}</td>
       <td>{{c.carModel}}</td>
       <td>{{c.carMake}}</td>
@@ -54,4 +54,5 @@
       <td><button (click)='assignInspector(u.lname)'>Assign</button></td>
     </tr>
   </table>
+  <button (click)='hider()'>Return</button>
 </div>
