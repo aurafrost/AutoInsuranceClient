@@ -4,19 +4,36 @@
       <tr>
         <th scope="col">Claim ID</th>
         <th scope="col">Date</th>
-        <th scope="col">Make</th>
-        <th scope="col">Model</th>
+        
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let s of sample_list">
         <td>{{s.claim_id}}</td>
         <td>{{s.date_of_incident}}</td>
-        <td>{{s.car_make}}</td>
-        <td>{{s.car_model}}</td>
+
         <button class="btn btn-primary" (click)="show_detail(s.claim_id)">Details</button>
         <!-- <claim *ngIf="details && s.claim_id === current_id"></claim> -->
-        <p *ngIf="details && s.claim_id === current_id">id: {{s.claim_id}}, <br>description: {{s.description}}, <br>estimate cost: {{s.estimate_cost}}</p>
+        <div *ngIf="details && s.claim_id === current_id">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Claim ID</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date of Incident</th>
+                <th scope="col">Estimate Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{s.claim_id}}</td>
+                <td>{{s.description}}</td>
+                <td>{{s.date_of_incident}}</td>
+                <td>{{s.estimate_cost}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </tr>
   
     </tbody>
