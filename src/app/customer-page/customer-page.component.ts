@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'customer-page',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private $router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  handleLogout() {
+    sessionStorage.removeItem('user');
+    return this.$router.navigate(['cover']);
+  }
 }
