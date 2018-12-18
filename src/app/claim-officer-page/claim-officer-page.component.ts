@@ -23,8 +23,8 @@ export class ClaimOfficerPageComponent implements OnInit {
 
   constructor(
     private claimService: ClaimService,
-    private userService: UserService
-    private $router: Router,
+    private userService: UserService,
+    private $router: Router
     ) { }
 
   ngOnInit() {
