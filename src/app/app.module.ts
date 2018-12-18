@@ -26,6 +26,7 @@ import { InspectOfficerTableComponent } from './admin-page/table/inspect-officer
 import { ReportTableComponent } from './admin-page/table/report-table/report-table.component';
 import { ClaimTableComponent } from './admin-page/table/claim-table/claim-table.component';
 import {UserService} from './service/user/user.service';
+import { ClaimService } from './service/claim/claim.service';
 import { UserDialogComponent } from './admin-page/dialog/user-dialog/user-dialog.component';
 import { MobileMenuComponent } from './admin-page/menu/mobile-menu/mobile-menu.component';
 import { ClaimComponent } from './customer-page/claim/claim.component';
@@ -68,7 +69,7 @@ import { ClaimListComponent } from './customer-page/claim-list/claim-list.compon
     MatSliderModule,
     MatSlideToggleModule
   ],
-  providers: [UserService],
+  providers: [UserService,ClaimService],
   bootstrap: [AppComponent],
   entryComponents: [UserDialogComponent]
 })
