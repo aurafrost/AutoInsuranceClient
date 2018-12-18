@@ -7,40 +7,32 @@
 
 <br><br>
 
-<h2>Welcome claim officer!</h2>
-<div id=claimTable>
-  <table>
-    <tr>
-      <th>Claim ID</th>
-      <th>User ID<!-- Maybe Claimant would be better? --></th>
-      <th>Car Model</th>
-      <th>Car Make</th>
-      <th>Date of Incident</th>
-      <th>Driver's License of other Driver</th>
-      <th>Incident Description</th>
-      <th>Estimate</th>
-      <th>Claim Status</th>
-      <!--<th>Assigned Officer</th>From report table? -->
-      <th>Assign</th>
-      <th>Approve</th>
-      <th>Decline</th>
-    </tr>
-    <tr *ngFor="let c of claims">
-      <td>{{c.claimId}}</td>
-      <td>{{c.userId}}</td>
-      <td>{{c.carModel}}</td>
-      <td>{{c.carMake}}</td>
-      <td>{{c.dateOfIncident}}</td>
-      <td>{{c.otherDriverLicense}}</td>
-      <td>{{c.description}}</td>
-      <td>{{c.estimateCostRepairs}}</td>
-      <td>{{c.status}}</td>
-      <!--<td>{{c.claimOfficer}}</td>-->
-      <td><button (click)='showInspectors(c)'>Assign</button></td>
-      <td><button (click)='approve(c)'>Approve</button></td>
-      <td><button (click)='decline(c)'>Decline</button></td>
-    </tr>
-  </table>
+<div id="claimTable">
+  <h2>Welcome claim officer!</h2>
+  <div class="container" *ngFor="let c of claims" style="margin-bottom: 1rem;">
+    <div class="card text-center">
+      <div class="card-header d-flex justify-content-between">
+        <p>ID: {{c.claimId}}</p>
+        <p>{{c.dateOfIncident}}</p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{c.description}}</p>
+        <div class="d-flex justify-content-around">
+          <p class="card-text">Car Model: {{c.carModel}}</p>
+          <p class="card-text">Car Make: {{c.carMake}}</p>
+          <p class="card-text">License: {{c.otherDriverLicense}}</p>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button (click)='showInspectors(c)' class="btn btn-secondary">Assign</button>
+          <button (click)='approve(c)' type="button" class="btn btn-secondary">Approve</button>
+          <button (click)='decline(c)' type="button" class="btn btn-secondary">Decline</button>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        Estimate Cost of Repairs: ${{c.estimateCostRepairs}}
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id='inspectorTable' style="display:none">
