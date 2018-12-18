@@ -1,0 +1,42 @@
+
+<table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Claim ID</th>
+        <th scope="col">Date</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sample_list">
+        <td>{{s.claim_id}}</td>
+        <td>{{s.date_of_incident}}</td>
+
+        <button class="btn btn-primary" (click)="show_detail(s.claim_id)">Details</button>
+        <!-- <claim *ngIf="details && s.claim_id === current_id"></claim> -->
+        <div *ngIf="details && s.claim_id === current_id">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Claim ID</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date of Incident</th>
+                <th scope="col">Estimate Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{s.claim_id}}</td>
+                <td>{{s.description}}</td>
+                <td>{{s.date_of_incident}}</td>
+                <td>{{s.estimate_cost}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </tr>
+  
+    </tbody>
+  </table>
+
+
