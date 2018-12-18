@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Claim } from '../model/Claim';
-import { ClaimService } from '../service/claim/claim.service';
+import {UserService} from '../service/user/user.service';
+import {ReportService} from '../service/report/report.service';
+import {ClaimService} from '../service/claim/claim.service';
 
 @Component({
   selector: 'claim-officer-page',
