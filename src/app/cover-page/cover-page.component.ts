@@ -26,7 +26,7 @@ export class CoverPageComponent implements OnInit {
   ngOnInit() {
     const user = sessionStorage.getItem('user');
     switch (user) {
-      case 'ADMIN':
+      case 'admin':
         return this.$router.navigate(['admin']);
       case 'customer':
         return this.$router.navigate(['customer']);
@@ -41,27 +41,44 @@ export class CoverPageComponent implements OnInit {
 
   handleAdminSubmit() {
     if (this.adminSecret === ADMIN_SECRET) {
-      sessionStorage.setItem('user', 'ADMIN');
+      sessionStorage.setItem('user', 'admin');
       return this.$router.navigate(['admin']);
     }
+  }
+
+  handleCustomerSubmit() {
+   console.log('Customer Submit');
+    sessionStorage.setItem('user', 'customer');
+    return this.$router.navigate(['customer']);
+  }
+
+  handleClaimOfficerSubmit() {
+    console.log('Claim Officer Submit');
+    sessionStorage.setItem('user', 'claim_officer');
+    return this.$router.navigate(['claim_officer']);
+  }
+
+  handleInspectOfficerSubmit() {
+    console.log('Inspect Officer Submit');
+    sessionStorage.setItem('user', 'inspect_officer');
+    return this.$router.navigate(['inspect_officer']);
   }
 
   handleSelectChange() {
     switch (this.type) {
       case 'Admin':
-        sessionStorage.setItem('user', 'admin');
         return this.user = 'admin';
       case 'Customer':
-        sessionStorage.setItem('user', 'customer');
-        return this.$router.navigate(['customer']);
+        this.user = 'customer';
+        return this.handleCustomerSubmit();
       case 'ClaimOfficer':
-        sessionStorage.setItem('user', 'claim_officer');
-        return this.$router.navigate(['claim_officer']);
+        this.user = 'claim_officer';
+        return this.handleClaimOfficerSubmit();
       case 'InspectOfficer':
-        sessionStorage.setItem('user', 'inspect_officer');
-        return this.$router.navigate(['inspect_officer']);
+        this.user = 'inspect_officer';
+        return this.handleInspectOfficerSubmit();
       default:
-        sessionStorage.setItem('user', '');
+        this.user = null;
         return this.$router.navigate(['cover']);
     }
   }
