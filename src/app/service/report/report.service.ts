@@ -20,4 +20,10 @@ export class ReportService {
     headers.append('Access-Control-Allow-Origin', '*');
     return this.http.post(`${BASE_URL}/reports`, report, {headers: headers});
   }
+
+  public updateReport(reportId,report){
+    const headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin', '*');
+    return this.http.post(`${BASE_URL}/reports/${reportId}`, report, {headers: headers});
+  }
 }

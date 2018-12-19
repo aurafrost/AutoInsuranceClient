@@ -6,6 +6,7 @@ import {ReportService} from '../service/report/report.service';
 import {ClaimService} from '../service/claim/claim.service';
 import { User } from '../model/User';
 import {Router, RouterModule} from '@angular/router';
+import { Report } from '../model/Report';
 
 @Component({
   selector: 'claim-officer-page',
@@ -20,10 +21,12 @@ export class ClaimOfficerPageComponent implements OnInit {
   claimTable: HTMLElement;
   inspectorTable: HTMLElement;
   claim: Claim;
+  report: Report;
 
   constructor(
     private claimService: ClaimService,
     private userService: UserService,
+    private reportService: ReportService,
     private $router: Router
     ) { }
 
@@ -50,11 +53,20 @@ export class ClaimOfficerPageComponent implements OnInit {
     this.inspectorTable.style.display = 'block';
   }
   assignInspector(lname) {
-    // issue below. inspectOfficer is in the report table. Need to discuss how to handle.
-    // this.claim.inspectOfficer=lname;
+    //create default report object
+    this.report.reportId=this.claim.claimId;
+    this.report.inspectOfficer=lname;
+    this.report.claim=this.claim;
+    this.report.claimOfficer="Admin";
+    this.report.estimate=0.00;
+    this.report.evaluation="";
+    this.report.insuredEmail=this.claim.user.email;
+    this.report.insuredPhone=this.claim.user.phone;
+    this.report.policyNo="";
+    
+    //send to DB
+    this.reportService.postReport(this.report);
 
-    // TODO send to database. Not sure this works
-    // this.claimService.updateClaimByInspector(this.claim,this.claim.claimId);
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display = 'block';
     this.inspectorTable = document.getElementById('inspectorTable') as HTMLElement;
