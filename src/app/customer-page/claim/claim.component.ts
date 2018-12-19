@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'claim',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClaimComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private $router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  handleBack() {
+    this.$router.navigate(['/customer/list']);
+  }
 }
