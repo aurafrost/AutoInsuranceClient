@@ -33,4 +33,10 @@ export class ReportService {
   public updateReportById(id, report) {
     return this.http.put<Report>(`${BASE_URL}/reports/${id}`, report);
   }
+
+  public updateReport(reportId,report){
+    const headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Origin', '*');
+    return this.http.post(`${BASE_URL}/reports/${reportId}`, report, {headers: headers});
+  }
 }
