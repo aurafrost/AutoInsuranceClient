@@ -19,17 +19,17 @@
       <th>View Claim</th>
     </tr>
     <tr *ngFor="let r of reports">
-      <td>{{r.claimId}</td>
+      <td>{{r.reportId}}</td> <!-- Just to be sure: reportId=claimId right? -->
       <td>{{r.policyNo}}</td>
       <td>{{r.insuredEmail}}</td>
       <td>{{r.insuredPhone}}</td>
       <td>{{r.claimOfficer}}</td>
-      <td><button (click)='showForm(r.claimId)'>View</button></td>
+      <td><button (click)='showForm(r)'>View</button></td>
     </tr>
   </table>
 </div>
 <div id='reportForm' style='display: none'>
-  <input type='text' id='estimate'><!-- Estimated cost of repairs goes here. -->
-  <textarea id='evaluation' rows='50' cols='100'></textarea><br>
+  Report: <textarea id='evaluation' rows='3' cols='200'></textarea><br>
+  Projected Estimate: <input type='text' id='estimate'><br><!-- Estimated cost of repairs goes here. -->
   <button (click)='submitReport(estimate,evaluation)'>Submit Report</button>
 </div>

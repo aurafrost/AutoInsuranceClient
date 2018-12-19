@@ -8,4 +8,6 @@ export class Report{
     claimOfficer:String;
     inspectOfficer:String;
     insuredPhone:String;
+    estimate:number;
+    evaluation:String;
 }

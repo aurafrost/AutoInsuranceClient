@@ -17,7 +17,7 @@ export class InspectOfficerPageComponent implements OnInit {
   report:Report;
   reportTable:HTMLElement;
   reportForm:HTMLElement;
-  claimId:number;
+  reportId:number;
 
   //need service
   constructor(
@@ -36,8 +36,8 @@ export class InspectOfficerPageComponent implements OnInit {
     return this.$router.navigate(['cover']);
   }
 
-  showForm(claimId) {
-    this.claimId = claimId; // for use in submitReport()
+  showForm(report) {
+    this.report = report; // for use in submitReport()
     this.reportTable = document.getElementById('reportTable') as HTMLElement;
     this.reportTable.style.display = 'none';
     this.reportForm = document.getElementById('reportForm') as HTMLElement;
@@ -46,7 +46,9 @@ export class InspectOfficerPageComponent implements OnInit {
 
   submitReport(estimate,evaluation){
     //send report to database
-    //this.reportService.postReport(report); //missing report evaluation column. Also not sure how to send estimate. Can't add this line yet.
+    this.report.estimate=estimate;
+    this.report.evaluation=evaluation;
+    this.reportService.postReport(this.report);
     this.reportTable=document.getElementById('reportTable') as HTMLElement;
     this.reportTable.style.display='block';
     this.reportForm=document.getElementById('reportForm') as HTMLElement;
