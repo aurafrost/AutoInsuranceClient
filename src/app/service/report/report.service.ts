@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Claim } from '../../model/Claim';
+import { Report } from '../../model/Report';
 import {BASE_URL} from '../../../environments/environment';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class ReportService {
   constructor(private http: HttpClient) { }
 
   public getReports() {
-    return this.http.get<Claim[]>(`${BASE_URL}/reports`);
+    return this.http.get<Report[]>(`${BASE_URL}/reports`);
   }
   // getReportByID() {}
 

@@ -21,7 +21,7 @@ export class ClaimOfficerPageComponent implements OnInit {
   claimTable: HTMLElement;
   inspectorTable: HTMLElement;
   claim: Claim;
-  report: Report=new Report();
+  report: any;
 
   constructor(
     private claimService: ClaimService,
@@ -45,8 +45,8 @@ export class ClaimOfficerPageComponent implements OnInit {
 
   showInspectors(claim) {
     this.claim = claim; // stored to be used in assignInspector
-    this.report.reportId=claim.claimId;
-    this.report.claim=claim;
+    //this.report.reportId=claim.claimId;
+    //this.report.claim=claim;
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display = 'none';
     this.inspectorTable = document.getElementById('inspectorTable') as HTMLElement;
@@ -54,9 +54,11 @@ export class ClaimOfficerPageComponent implements OnInit {
   }
   assignInspector(lname) {
     //create default report object
-    //this.report.reportId=this.claim.claimId;
+    this.report=new Report();
     this.report.inspectOfficer=lname;
-    //this.report.claim=this.claim;
+    this.report.claim=this.claim;
+    //this.report.reportId=this.report.claim.claimId;
+    this.report.reportId="";
     this.report.claimOfficer="Admin"; //need to get name of whoever is logged in
     this.report.estimate=0.00;
     this.report.evaluation="";
@@ -65,9 +67,9 @@ export class ClaimOfficerPageComponent implements OnInit {
     //this.report.insuredPhone=this.claim.user.phone;
     this.report.insuredPhone="";
     this.report.policyNo="";
-    
+    console.log(this.report)
     //send to DB
-    this.reportService.postReport(this.report);
+    this.reportService.postReport(this.report).subscribe(data => {this.report = data;}); //for some reason tries to set null values in claim table?
 
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display = 'block';
