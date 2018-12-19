@@ -15,11 +15,11 @@ const routes: Routes = [
     path: 'customer',
     component: CustomerPageComponent,
     children: [
-      {path: '', redirectTo:'list', pathMatch: 'full'},
+      {path: '', redirectTo: 'list', pathMatch: 'full'},
       {path: 'list', component: ClaimListComponent},
       {path: 'claim', component: ClaimComponent}
     ]
-},
+  },
   {path: 'claim_officer', component: ClaimOfficerPageComponent},
   {path: 'inspect_officer', component: InspectOfficerPageComponent},
 ];

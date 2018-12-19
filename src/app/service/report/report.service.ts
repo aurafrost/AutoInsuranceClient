@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpHeaders} from '@angular/common/http';
-import { Claim } from "../../model/Claim";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Claim } from '../../model/Claim';
 import {BASE_URL} from '../../../environments/environment';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class ReportService {
   public getReports() {
     return this.http.get<Claim[]>(`${BASE_URL}/reports`);
   }
-  //getReportByID() {}
-  
+  // getReportByID() {}
+
   public postReport(report){
     const headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin', '*');

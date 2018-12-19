@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpHeaders} from '@angular/common/http';
-import { Claim } from "../../model/Claim";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Claim } from '../../model/Claim';
 import {BASE_URL} from '../../../environments/environment';
 
 @Injectable({
@@ -10,25 +10,27 @@ export class ClaimService {
 
   constructor(private http: HttpClient) { }
 
-  public getClaims(){
+  public getClaims() {
     return this.http.get<Claim[]>(`${BASE_URL}/claims`);
   }
 
-  public getClaimByID(id){
-    return this.http.get(`${BASE_URL}/claims/id/${id}`);
+  public getClaimByID(id) {
+    return this.http.get(`${BASE_URL}/claims/${id}`);
   }
 
-  public addClaim(Claim) {
+  public addClaim(claim) {
     const headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin', '*');
-    return this.http.post<Claim>(`${BASE_URL}/claims/add`,Claim, {headers: headers});
+    return this.http.post<Claim>(`${BASE_URL}/claims`, claim, {headers: headers});
   }
 
-  public updateClaim(Claim,id){ //not sure how to do this actually. Probably won't work as is.
-    return this.http.put<Claim>(`${BASE_URL}/claims/id/${id}`, Claim);
+  public updateClaim(claim, id) { // not sure how to do this actually. Probably won't work as is.
+    // const headers = new HttpHeaders();
+    // headers.append('Access-Control-Allow-Origin', '*');
+    return this.http.put<Claim>(`${BASE_URL}/claims/${id}`, claim);
   }
 
-  public updateClaimByInspector(Claim,id){ //will probably fail too
-    return this.http.put<Claim>(`${BASE_URL}/claims/id/${id}`, Claim);
+  public updateClaimByInspector(claim, id) { // will probably fail too
+    return this.http.put<Claim>(`${BASE_URL}/claims/${id}`, claim);
   }
 }
