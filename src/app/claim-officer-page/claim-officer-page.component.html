@@ -6,9 +6,8 @@
 </button>
 
 <br><br>
-
+<h2>Welcome claim officer!</h2>
 <div id="claimTable">
-  <h2>Welcome claim officer!</h2>
   <div class="container" *ngFor="let c of claims" style="margin-bottom: 1rem;">
     <div class="card text-center">
       <div class="card-header d-flex justify-content-between">
@@ -40,10 +39,12 @@
 <div id='inspectorTable' style="display:none">
   <table>
     <tr>
-      <th>Inspector Name</th>
+      <th>Inspector First Name</th>
+      <th>Inspector Last Name</th>
       <th>Select</th>
     </tr>
     <tr *ngFor="let u of users"><!--I'm not sure this works. Probably not-->
+      <td>{{u.fname}}</td>
       <td>{{u.lname}}</td>
       <td><button (click)='assignInspector(u.lname)'>Assign</button></td>
     </tr>

@@ -21,7 +21,7 @@ export class ClaimOfficerPageComponent implements OnInit {
   claimTable: HTMLElement;
   inspectorTable: HTMLElement;
   claim: Claim;
-  report: Report;
+  report: Report=new Report();
 
   constructor(
     private claimService: ClaimService,
@@ -35,7 +35,6 @@ export class ClaimOfficerPageComponent implements OnInit {
     this.userService.getUsersByType('inspect_officers')
           .subscribe(data => {
             this.users = data;
-            //console.log(this.users);
           });
   }
 
@@ -46,7 +45,8 @@ export class ClaimOfficerPageComponent implements OnInit {
 
   showInspectors(claim) {
     this.claim = claim; // stored to be used in assignInspector
-
+    this.report.reportId=claim.claimId;
+    this.report.claim=claim;
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display = 'none';
     this.inspectorTable = document.getElementById('inspectorTable') as HTMLElement;
@@ -54,14 +54,16 @@ export class ClaimOfficerPageComponent implements OnInit {
   }
   assignInspector(lname) {
     //create default report object
-    this.report.reportId=this.claim.claimId;
+    //this.report.reportId=this.claim.claimId;
     this.report.inspectOfficer=lname;
-    this.report.claim=this.claim;
-    this.report.claimOfficer="Admin";
+    //this.report.claim=this.claim;
+    this.report.claimOfficer="Admin"; //need to get name of whoever is logged in
     this.report.estimate=0.00;
     this.report.evaluation="";
-    this.report.insuredEmail=this.claim.user.email;
-    this.report.insuredPhone=this.claim.user.phone;
+    //this.report.insuredEmail=this.claim.user.email;
+    this.report.insuredEmail="";
+    //this.report.insuredPhone=this.claim.user.phone;
+    this.report.insuredPhone="";
     this.report.policyNo="";
     
     //send to DB
