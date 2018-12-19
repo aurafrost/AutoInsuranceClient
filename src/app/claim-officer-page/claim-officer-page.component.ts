@@ -35,7 +35,7 @@ export class ClaimOfficerPageComponent implements OnInit {
     this.userService.getUsersByType('inspect_officers')
           .subscribe(data => {
             this.users = data;
-            //console.log(this.users);
+            // console.log(this.users);
           });
   }
 
@@ -75,12 +75,18 @@ export class ClaimOfficerPageComponent implements OnInit {
   approve(claim) {
     this.claim = claim;
     this.claim.status = 'Approved';
-    this.claimService.updateClaim(claim, this.claim.claimId);
+    this.claimService.updateClaim(claim, this.claim.claimId)
+      .subscribe(data => {
+        this.claim = data;
+      });
   }
   decline(claim) {
     this.claim = claim;
     this.claim.status = 'Declined';
-    this.claimService.updateClaim(claim, this.claim.claimId);
+    this.claimService.updateClaim(claim, this.claim.claimId)
+      .subscribe(data => {
+        this.claim = data;
+      });
   }
   hider() {
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
