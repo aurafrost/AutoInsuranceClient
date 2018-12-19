@@ -48,7 +48,7 @@ export class InspectOfficerPageComponent implements OnInit {
     //send report to database
     this.report.estimate=estimate;
     this.report.evaluation=evaluation;
-    this.reportService.postReport(this.report);
+    this.reportService.updateReport(this.report.reportId,this.report);
     this.reportTable=document.getElementById('reportTable') as HTMLElement;
     this.reportTable.style.display='block';
     this.reportForm=document.getElementById('reportForm') as HTMLElement;
