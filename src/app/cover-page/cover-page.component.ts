@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ADMIN_SECRET} from '../../environments/environment';
+import {User} from '../model/User';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../service/user/user.service';
+import {defaultThrottleConfig} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'cover-page',
@@ -12,6 +16,10 @@ export class CoverPageComponent implements OnInit {
   private type: string;
   private user: any;
   private adminSecret = '';
+  private userForm = new User();
+  private formData: FormGroup;
+  private email = null;
+  private policyNo = null;
 
   userCategories: any[] = [
     {value: 'Admin', viewValue: 'Admin'},
@@ -20,7 +28,10 @@ export class CoverPageComponent implements OnInit {
     {value: 'InspectOfficer', viewValue: 'Inspect Officer'}
   ];
 
-  constructor(private $router: Router) {
+  constructor(
+    private httpUser: UserService,
+    private $router: Router) {
+    this.formData = this.customerFormInit();
   }
 
   ngOnInit() {
@@ -46,23 +57,81 @@ export class CoverPageComponent implements OnInit {
     }
   }
 
-  handleCustomerSubmit() {
-   console.log('Customer Submit');
-    sessionStorage.setItem('user', 'customer');
-    return this.$router.navigate(['customer']);
+  handleUserRegister() {
+    const user: User = Object.assign(this.userForm, this.formData.value);
+    switch (this.user) {
+      case 'customer':
+        user.type = 'Customer';
+        console.log(user);
+        return this.addUser(user);
+      case 'claim_officer':
+        user.type = 'ClaimOfficer';
+        console.log(user);
+        return this.addUser(user);
+      case 'inspect_officer':
+        user.type = 'InspectOfficer';
+        console.log(user);
+        return this.addUser(user);
+      default:
+        return null;
+    }
   }
 
-
-  handleClaimOfficerSubmit() {
-    console.log('Claim Officer Submit');
-    sessionStorage.setItem('user', 'claim_officer');
-    return this.$router.navigate(['claim_officer']);
+  handleUserLogin() {
+    console.log(this.email);
+    this.httpUser.getUserByEmail(this.email)
+      .subscribe(data => {
+        if (data) {
+          if (data.policyNo = this.policyNo) {
+            switch (data.type) {
+              case 'Customer':
+                sessionStorage.setItem('user', 'customer');
+                return this.$router.navigate(['customer']);
+              case 'ClaimOfficer':
+                sessionStorage.setItem('user', 'claim_officer');
+                return this.$router.navigate(['claim_officer']);
+              case 'InspectOfficer':
+                sessionStorage.setItem('user', 'inspect_officer');
+                return this.$router.navigate(['inspect_officer']);
+              default:
+                return alert('User does not exits!');
+            }
+          }
+        } else {
+          return alert('User does not exits!');
+        }
+      });
   }
 
-  handleInspectOfficerSubmit() {
-    console.log('Inspect Officer Submit');
-    sessionStorage.setItem('user', 'inspect_officer');
-    return this.$router.navigate(['inspect_officer']);
+  customerFormInit() {
+    return new FormGroup({
+      email: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      fname: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      lname: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      phone: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      address: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      policyNo: new FormControl("", Validators.compose([
+        Validators.required
+      ]))
+    });
+  }
+
+  addUser(user) {
+    this.httpUser.postUser(user)
+      .subscribe(data => {
+        console.log(data);
+        alert('User Added!');
+      });
   }
 
   handleSelectChange() {
@@ -70,14 +139,11 @@ export class CoverPageComponent implements OnInit {
       case 'Admin':
         return this.user = 'admin';
       case 'Customer':
-        this.user = 'customer';
-        return this.handleCustomerSubmit();
+        return this.user = 'customer';
       case 'ClaimOfficer':
-        this.user = 'claim_officer';
-        return this.handleClaimOfficerSubmit();
+        return this.user = 'claim_officer';
       case 'InspectOfficer':
-        this.user = 'inspect_officer';
-        return this.handleInspectOfficerSubmit();
+        return this.user = 'inspect_officer';
       default:
         this.user = null;
         return this.$router.navigate(['cover']);
