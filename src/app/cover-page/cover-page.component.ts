@@ -4,7 +4,6 @@ import {ADMIN_SECRET} from '../../environments/environment';
 import {User} from '../model/User';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../service/user/user.service';
-import {defaultThrottleConfig} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'cover-page',
@@ -88,11 +87,19 @@ export class CoverPageComponent implements OnInit {
                 sessionStorage.setItem('user', 'customer');
                 return this.$router.navigate(['customer']);
               case 'ClaimOfficer':
-                sessionStorage.setItem('user', 'claim_officer');
-                return this.$router.navigate(['claim_officer']);
+                if (this.adminSecret === ADMIN_SECRET) {
+                  sessionStorage.setItem('user', 'claim_officer');
+                  return this.$router.navigate(['claim_officer']);
+                } else {
+                  return alert('incorrect admin secret!');
+                }
               case 'InspectOfficer':
-                sessionStorage.setItem('user', 'inspect_officer');
-                return this.$router.navigate(['inspect_officer']);
+                if (this.adminSecret === ADMIN_SECRET) {
+                  sessionStorage.setItem('user', 'inspect_officer');
+                  return this.$router.navigate(['inspect_officer']);
+                } else {
+                  return alert('Incorrect Admin Secret!');
+                }
               default:
                 return alert('User does not exits!');
             }

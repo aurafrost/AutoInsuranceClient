@@ -44,6 +44,10 @@
               <input type="text" [(ngModel)]="policyNo" matInput placeholder="Policy No" name="policyNo"/>
             </mat-form-field>
 
+            <mat-form-field *ngIf="user === 'claim_officer' || user === 'inspect_officer'">
+              <input type="text"  name="adminSecret" [(ngModel)]="adminSecret" matInput placeholder="Secret">
+            </mat-form-field>
+
             <div mat-dialog-actions>
               <button (click)="handleUserLogin()" mat-raised-button type="submit" mat-button>Login</button>
             </div>
@@ -77,8 +81,6 @@
 
             <div mat-dialog-actions>
               <button [disabled]="formData.pristine" mat-raised-button type="submit" mat-button>Register</button>
-              <!--<button *ngIf="user === 'claim_officer'" [disabled]="formData.pristine" mat-raised-button type="submit" mat-button>Register</button>-->
-              <!--<button *ngIf="user === 'inspect_officer'" [disabled]="formData.pristine" mat-raised-button type="submit" mat-button>Register</button>-->
             </div>
           </form>
         </mat-tab>

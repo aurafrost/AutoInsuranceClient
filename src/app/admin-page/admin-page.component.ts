@@ -85,18 +85,6 @@ export class AdminPageComponent implements OnInit {
             this.list = data;
             console.log(this.list);
           });
-      // case 'Reports':
-      //   return this.reportHttp.getReports()
-      //     .subscribe(data => {
-      //       this._list = data;
-      //       console.log(this._list);
-      //     });
-      // case 'Claims':
-      //   return this.claimHttp.getClaims()
-      //     .subscribe(data => {
-      //       this._list = data;
-      //       console.log(this._list);
-      //     });
     }
   }
 
@@ -129,18 +117,6 @@ export class AdminPageComponent implements OnInit {
               console.log(this.list);
             }
           });
-      // case 'Reports':
-      //   return this.reportHttp.getReportByID()
-      //     .subscribe(data => {
-      //       this._list = data;
-      //       console.log(this._list);
-      //     });
-      // case 'Claims':
-      //   return this.claimHttp.getClaimByID()
-      //     .subscribe(data => {
-      //       this._list = data;
-      //       console.log(this._list);
-      //     });
     }
   }
 }
