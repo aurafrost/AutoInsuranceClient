@@ -30,9 +30,22 @@ export class UserDialogComponent implements OnInit {
 
   handleOnSubmit() {
     const user: User = Object.assign(this.user, this.formData.value);
-    user.password = 'TempPass';
-    console.log(user);
-    this.addUser(user);
+    switch (this.data.type) {
+      case 'Customers':
+        user.type = 'Customer';
+        console.log(user);
+        return this.addUser(user);
+      case 'Claim Officers':
+        user.type = 'ClaimOfficer';
+        console.log(user);
+        return this.addUser(user);
+      case 'Inspect Officers':
+        user.type = 'InspectOffice';
+        console.log(user);
+        return this.addUser(user);
+      default:
+        return null;
+    }
   }
 
   formInit() {
@@ -53,6 +66,9 @@ export class UserDialogComponent implements OnInit {
           Validators.required
         ])),
         address: new FormControl("", Validators.compose([
+          Validators.required
+        ])),
+        policyNo: new FormControl("", Validators.compose([
           Validators.required
         ]))
     });
