@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +12,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatMenuModule, MatRadioModule,
-  MatSelectModule, MatSliderModule, MatSlideToggleModule,
+  MatSelectModule, MatSliderModule, MatSlideToggleModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -67,10 +67,12 @@ import { ClaimListComponent } from './customer-page/claim-list/claim-list.compon
     MatCardModule,
     MatRadioModule,
     MatSliderModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTabsModule
   ],
-  providers: [UserService,ClaimService],
+  providers: [UserService, ClaimService],
   bootstrap: [AppComponent],
-  entryComponents: [UserDialogComponent]
+  entryComponents: [UserDialogComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

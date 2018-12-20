@@ -22,7 +22,7 @@ export class UserService {
   }
 
   getUserByEmail(email) {
-    return this.http.get<User>(`${BASE_URL}/users/${email}`);
+    return this.http.get<User>(`${BASE_URL}/users/email/${email}`);
   }
 
   getUsersByType(type) {
@@ -40,11 +40,11 @@ export class UserService {
   }
 
   deleteUserById(id) {
-    return this.http.delete<User>(`${BASE_URL}/users/${id}`);
+    return this.http.delete<User>(`${BASE_URL}/users/id/${id}`);
   }
 
   deleteUserByEmail(email) {
-    return this.http.delete<User>(`${BASE_URL}/users/${email}`);
+    return this.http.delete<User>(`${BASE_URL}/users/email/${email}`);
   }
 
   updateUserStatus(user) {

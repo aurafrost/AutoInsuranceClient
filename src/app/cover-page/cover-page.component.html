@@ -30,6 +30,60 @@
       <br>
       <button (click)="handleAdminSubmit()" mat-raised-button type="submit" mat-button>Submit</button>
     </div>
+
+
+    <div *ngIf="user === 'customer' || user === 'claim_officer' || user === 'inspect_officer'">
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Login">
+          <form>
+            <mat-form-field style="width: 100%">
+              <input type="text" [(ngModel)]="email" matInput placeholder="Email" name="email"/>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%">
+              <input type="text" [(ngModel)]="policyNo" matInput placeholder="Policy No" name="policyNo"/>
+            </mat-form-field>
+
+            <div mat-dialog-actions>
+              <button (click)="handleUserLogin()" mat-raised-button type="submit" mat-button>Login</button>
+            </div>
+          </form>
+        </mat-tab>
+        <mat-tab label="Register">
+          <form [formGroup]="formData" (submit)="handleUserRegister()">
+            <mat-form-field style="width: 100%">
+              <input type="text" matInput placeholder="Email" formControlName="email"/>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%">
+              <input type="text" matInput placeholder="First Name" formControlName="fname"/>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%">
+              <input type="text" matInput placeholder="Last Name" formControlName="lname"/>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%">
+              <textarea rows="3" matInput placeholder="Address" formControlName="address"></textarea>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%">
+              <input type="text" matInput placeholder="Phone" formControlName="phone"/>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%">
+              <input type="text" matInput placeholder="Policy No" formControlName="policyNo"/>
+            </mat-form-field>
+
+            <div mat-dialog-actions>
+              <button [disabled]="formData.pristine" mat-raised-button type="submit" mat-button>Register</button>
+              <!--<button *ngIf="user === 'claim_officer'" [disabled]="formData.pristine" mat-raised-button type="submit" mat-button>Register</button>-->
+              <!--<button *ngIf="user === 'inspect_officer'" [disabled]="formData.pristine" mat-raised-button type="submit" mat-button>Register</button>-->
+            </div>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
   </main>
 
   <footer class="mastfoot mt-auto">

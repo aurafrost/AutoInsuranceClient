@@ -22,12 +22,16 @@
       <textarea rows="3" matInput placeholder="Phone" formControlName="phone"></textarea>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-select formControlName="type" placeholder="Type">
-        <mat-option *ngFor="let type of types" [value]="type.value">
-          {{type.viewValue}}
-        </mat-option>
-      </mat-select>
+    <!--<mat-form-field>-->
+      <!--<mat-select formControlName="type" placeholder="Type">-->
+        <!--<mat-option *ngFor="let type of types" [value]="type.value">-->
+          <!--{{type.viewValue}}-->
+        <!--</mat-option>-->
+      <!--</mat-select>-->
+    <!--</mat-form-field>-->
+
+    <mat-form-field style="width: 100%">
+      <input type="text" matInput placeholder="Policy No" formControlName="policyNo"/>
     </mat-form-field>
 
     <div mat-dialog-actions>
