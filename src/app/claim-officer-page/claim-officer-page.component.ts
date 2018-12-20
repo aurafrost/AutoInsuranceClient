@@ -58,7 +58,7 @@ export class ClaimOfficerPageComponent implements OnInit {
     this.report.inspectOfficer=lname;
     this.report.claim=this.claim;
     //this.report.reportId=this.report.claim.claimId;
-    this.report.reportId="";
+    //this.report.reportId="";
     this.report.claimOfficer="Admin"; //need to get name of whoever is logged in
     this.report.estimate=0.00;
     this.report.evaluation="";
@@ -66,7 +66,7 @@ export class ClaimOfficerPageComponent implements OnInit {
     this.report.insuredEmail="";
     //this.report.insuredPhone=this.claim.user.phone;
     this.report.insuredPhone="";
-    this.report.policyNo="";
+    //this.report.policyNo="";
     console.log(this.report)
     //send to DB
     this.reportService.postReport(this.report).subscribe(data => {this.report = data;}); //for some reason tries to set null values in claim table?
