@@ -54,14 +54,15 @@ export class ClaimOfficerPageComponent implements OnInit {
     //create default report object
     this.report=new Report();
     this.report.inspectOfficer=lname;
+    console.log(this.claim.user);
     this.report.claim=this.claim;
     this.report.reportId=this.report.claim.claimId;
     this.report.claimOfficer="Admin"; //need to get actual name of whoever is logged in TO-DO
     this.report.estimate=0.00;
     this.report.evaluation="";
-    //this.report.insuredEmail=this.report.claim.user.email;
+    //this.report.insuredEmail=this.report.claim.user.email; //still failing
     this.report.insuredEmail="";
-    //this.report.insuredPhone=this.report.claim.user.phone;
+    //this.report.insuredPhone=this.report.claim.user.phone; //also failing
     this.report.insuredPhone="";
     console.log(this.report)
     //send to DB
