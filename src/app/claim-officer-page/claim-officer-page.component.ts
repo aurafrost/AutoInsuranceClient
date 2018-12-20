@@ -45,8 +45,6 @@ export class ClaimOfficerPageComponent implements OnInit {
 
   showInspectors(claim) {
     this.claim = claim; // stored to be used in assignInspector
-    //this.report.reportId=claim.claimId;
-    //this.report.claim=claim;
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display = 'none';
     this.inspectorTable = document.getElementById('inspectorTable') as HTMLElement;
@@ -57,19 +55,17 @@ export class ClaimOfficerPageComponent implements OnInit {
     this.report=new Report();
     this.report.inspectOfficer=lname;
     this.report.claim=this.claim;
-    //this.report.reportId=this.report.claim.claimId;
-    //this.report.reportId="";
-    this.report.claimOfficer="Admin"; //need to get name of whoever is logged in
+    this.report.reportId=this.report.claim.claimId;
+    this.report.claimOfficer="Admin"; //need to get actual name of whoever is logged in TO-DO
     this.report.estimate=0.00;
     this.report.evaluation="";
-    //this.report.insuredEmail=this.claim.user.email;
+    //this.report.insuredEmail=this.report.claim.user.email;
     this.report.insuredEmail="";
-    //this.report.insuredPhone=this.claim.user.phone;
+    //this.report.insuredPhone=this.report.claim.user.phone;
     this.report.insuredPhone="";
-    //this.report.policyNo="";
     console.log(this.report)
     //send to DB
-    this.reportService.postReport(this.report).subscribe(data => {this.report = data;}); //for some reason tries to set null values in claim table?
+    this.reportService.postReport(this.report).subscribe(data => {this.report = data;});
 
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display = 'block';
