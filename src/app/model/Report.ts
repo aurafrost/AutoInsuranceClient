@@ -1,13 +1,23 @@
 import { Claim } from './Claim';
 
-export class Report {
-    reportId: number;
-    claim: Claim;
-    policyNo: String;
-    insuredEmail: String;
-    claimOfficer: String;
-    inspectOfficer: String;
-    insuredPhone: String;
-    estimate: number;
-    evaluation: String;
+export class Report{
+    public reportId:any='';
+    public claim:Claim;
+    public insuredEmail:any='';
+    public claimOfficer:any='';
+    public inspectOfficer:any='';
+    public insuredPhone:any='';
+    public estimate:any='';
+    public evaluation:any='';
+
+    constructor(reportId?,claim?,insuredEmail?,claimOfficer?,inspectOfficer?,insuredPhone?,estimate?,evaluation?){
+        this.reportId=reportId;
+        this.claim=claim;
+        this.insuredEmail=insuredEmail;
+        this.claimOfficer=claimOfficer;
+        this.inspectOfficer=inspectOfficer;
+        this.insuredPhone=insuredPhone;
+        this.estimate=estimate;
+        this.evaluation=evaluation;
+    }
 }
