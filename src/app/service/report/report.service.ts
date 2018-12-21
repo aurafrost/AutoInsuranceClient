@@ -16,13 +16,17 @@ export class ReportService {
   }
   // getReportByID() {}
 
-  public postReport(report){
+  public postReport(report) {
     const headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin', '*');
     return this.http.post(`${BASE_URL}/reports`, report, {headers: headers});
   }
 
-  public updateReport(reportId,report){
+  public getReportById(id) {
+    return this.http.get<Report>(`${BASE_URL}/reports/${id}`);
+  }
+
+  public updateReport(reportId, report){
     const headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin', '*');
     return this.http.post(`${BASE_URL}/reports/${reportId}`, report, {headers: headers});

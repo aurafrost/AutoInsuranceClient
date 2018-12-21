@@ -32,6 +32,7 @@ import { MobileMenuComponent } from './admin-page/menu/mobile-menu/mobile-menu.c
 import { ClaimComponent } from './customer-page/claim/claim.component';
 import { ClaimListComponent } from './customer-page/claim-list/claim-list.component';
 import { DetailsDialogComponent } from './customer-page/claim-list/details-dialog/details-dialog.component';
+import { ReportDialogComponent } from './claim-officer-page/report-dialog/report-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { DetailsDialogComponent } from './customer-page/claim-list/details-dialo
     MobileMenuComponent,
     ClaimComponent,
     ClaimListComponent,
-    DetailsDialogComponent
+    DetailsDialogComponent,
+    ReportDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,7 @@ import { DetailsDialogComponent } from './customer-page/claim-list/details-dialo
   ],
   providers: [UserService, ClaimService],
   bootstrap: [AppComponent],
-  entryComponents: [UserDialogComponent, DetailsDialogComponent],
+  entryComponents: [UserDialogComponent, DetailsDialogComponent, ReportDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

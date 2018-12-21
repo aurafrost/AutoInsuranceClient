@@ -27,13 +27,6 @@ export class ClaimListComponent implements OnInit {
     console.log(window.history);
   }
 
-  // show_detail(id: string) {
-  //   this.details = true;
-  //   this.current_id = id;
-  //   console.log('clicked on: ' + this.current_id);
-  //   console.log('class id is: ' + id);
-  // }
-
   getClaims() {
     this.httpClaim.getClaims()
       .subscribe(data => {
