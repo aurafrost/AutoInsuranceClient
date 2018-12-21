@@ -40,36 +40,42 @@ export class ClaimOfficerPageComponent implements OnInit {
 
   handleLogout() {
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('email');
     return this.$router.navigate(['cover']);
   }
 
+  viewReport() {
+  }
+
   showInspectors(claim) {
+    console.log(claim);
     this.claim = claim; // stored to be used in assignInspector
-    //this.report.reportId=claim.claimId;
-    //this.report.claim=claim;
+    this.userService.getUserByClaim(claim)
+      .subscribe(data => {
+        this.report = new Report();
+        this.report.reportId = this.claim.claimId;
+        this.report.claimOfficer = sessionStorage.getItem('email');
+        // this.report.estimate = 0.00;
+        // this.report.evaluation = '';
+        this.report.insuredEmail = data.email;
+        this.report.insuredPhone = data.phone;
+        console.log(this.report);
+      });
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display = 'none';
     this.inspectorTable = document.getElementById('inspectorTable') as HTMLElement;
     this.inspectorTable.style.display = 'block';
   }
-  assignInspector(lname) {
-    //create default report object
-    this.report=new Report();
-    this.report.inspectOfficer=lname;
-    this.report.claim=this.claim;
-    //this.report.reportId=this.report.claim.claimId;
-    //this.report.reportId="";
-    this.report.claimOfficer="Admin"; //need to get name of whoever is logged in
-    this.report.estimate=0.00;
-    this.report.evaluation="";
-    //this.report.insuredEmail=this.claim.user.email;
-    this.report.insuredEmail="";
-    //this.report.insuredPhone=this.claim.user.phone;
-    this.report.insuredPhone="";
-    //this.report.policyNo="";
-    console.log(this.report)
-    //send to DB
-    this.reportService.postReport(this.report).subscribe(data => {this.report = data;}); //for some reason tries to set null values in claim table?
+
+  assignInspector(officer) {
+    // create default report object
+    this.report.inspectOfficer = officer.email;
+    console.log(this.report);
+    // send to DB
+    this.reportService.postReport(this.report)
+      .subscribe(data => {
+        this.report = data;
+      }); // for some reason tries to set null values in claim table?
 
     this.claimTable = document.getElementById('claimTable') as HTMLElement;
     this.claimTable.style.display = 'block';

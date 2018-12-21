@@ -8,5 +8,6 @@ export class Claim {
     carMake: String;
     dateOfIncident: String;
     description: String;
+    userId: number;
 }
 

@@ -12,11 +12,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class UserDialogComponent implements OnInit {
   private user = new User();
   private formData: FormGroup;
-  types = [
-    {value: 'Customer', viewValue: 'Customer'},
-    {value: 'ClaimOfficer', viewValue: 'Claim Officer'},
-    {value: 'InspectOfficer', viewValue: 'Inspect Officer'}
-  ];
 
   constructor(
     private httpUser: UserService,

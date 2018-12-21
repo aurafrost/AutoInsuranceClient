@@ -18,10 +18,10 @@ export class ClaimService {
     return this.http.get(`${BASE_URL}/claims/${id}`);
   }
 
-  public addClaim(claim) {
+  public addClaim(userId, claim) {
     const headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin', '*');
-    return this.http.post<Claim>(`${BASE_URL}/claims`, claim, {headers: headers});
+    return this.http.post<Claim>(`${BASE_URL}/claims/${userId}`, claim, {headers: headers});
   }
 
   public updateClaim(claim, id) { // not sure how to do this actually. Probably won't work as is.

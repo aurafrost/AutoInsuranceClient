@@ -1,22 +1,31 @@
 <div class="container col-sm-4">
-<form>
-    <div class="form-group">
-      <label for="CarMake">Car Make</label>
-      <input type="carmake" class="form-control" id="carmake" aria-describedby="emailHelp" placeholder="Car Make">
+  <h1>Open Claim</h1>
+  <form [formGroup]="formData" (submit)="handleOnSubmit()">
+    <mat-form-field style="width: 100%">
+      <input type="text" matInput placeholder="Car Make" formControlName="carMake"/>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <input type="text" matInput placeholder="Car Model" formControlName="carModel"/>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <input type="text" matInput placeholder="Date of Incident" formControlName="dateOfIncident"/>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <textarea rows="3" matInput placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <input matInput placeholder="At Fault License" formControlName="otherDriverLicense"/>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button [disabled]="formData.pristine" mat-raised-button type="submit" mat-button>Submit</button>
+      <button mat-button mat-raised-button (click)="handleBack()">Back</button>
     </div>
-    <div class="form-group">
-      <label for="CarModel">Car Model</label>
-      <input type="password" class="form-control" id="CarModel" placeholder="Car Model">
-    </div>
-    <div class="form-group">
-        <label for="PoliceReport">Police Report</label>
-        <input type="password" class="form-control" id="PoliceReport" placeholder="Police Report">
-      </div>
-    <div class="btn-group-sm">
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <button class="btn btn-primary" (click)="handleBack()">Back</button>
-    </div>
-</form>
+  </form>
 
 </div>
 

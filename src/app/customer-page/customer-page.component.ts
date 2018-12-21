@@ -17,6 +17,7 @@ export class CustomerPageComponent implements OnInit {
 
   handleLogout() {
     sessionStorage.removeItem('user');
+    sessionStorage.removeItem('email');
     return this.$router.navigate(['cover']);
   }
 }

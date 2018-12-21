@@ -17,6 +17,10 @@ export class UserService {
     return this.http.get<User>(`${BASE_URL}/users/id/${id}`);
   }
 
+  getUserByClaim(claim) {
+    return this.http.post<User>(`${BASE_URL}/users/claim`, claim);
+  }
+
   getUserByIdAndType(type, id) {
     return this.http.get<User>(`${BASE_URL}/users/${type}/${id}`);
   }
