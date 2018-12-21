@@ -31,6 +31,7 @@ import { UserDialogComponent } from './admin-page/dialog/user-dialog/user-dialog
 import { MobileMenuComponent } from './admin-page/menu/mobile-menu/mobile-menu.component';
 import { ClaimComponent } from './customer-page/claim/claim.component';
 import { ClaimListComponent } from './customer-page/claim-list/claim-list.component';
+import { DetailsDialogComponent } from './customer-page/claim-list/details-dialog/details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ClaimListComponent } from './customer-page/claim-list/claim-list.compon
     UserDialogComponent,
     MobileMenuComponent,
     ClaimComponent,
-    ClaimListComponent
+    ClaimListComponent,
+    DetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,7 @@ import { ClaimListComponent } from './customer-page/claim-list/claim-list.compon
   ],
   providers: [UserService, ClaimService],
   bootstrap: [AppComponent],
-  entryComponents: [UserDialogComponent],
+  entryComponents: [UserDialogComponent, DetailsDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
