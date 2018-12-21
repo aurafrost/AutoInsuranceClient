@@ -1,0 +1,18 @@
+<div mat-dialog-title>
+  <div mat-dialog-content >
+    <div class="card-header">
+      Claim {{data.claim.claimId}} Details
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{data.claim.status}}</h5>
+      <p class="card-text">{{data.claim.description}}</p>
+      <p class="card-text">Care Make: {{data.claim.carMake}}</p>
+      <p class="card-text">Care Model: {{data.claim.carModel}}</p>
+      <p class="card-text">At Fault License: {{data.claim.otherDriverLicense}}</p>
+      <a href="#" class="btn btn-primary">update</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{data.claim.dateOfIncident}}
+    </div>
+  </div>
+</div>
