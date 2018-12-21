@@ -7,6 +7,9 @@ import {ClaimService} from '../service/claim/claim.service';
 import { User } from '../model/User';
 import {Router, RouterModule} from '@angular/router';
 import { Report } from '../model/Report';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {UserDialogComponent} from '../admin-page/dialog/user-dialog/user-dialog.component';
+import {ReportDialogComponent} from './report-dialog/report-dialog.component';
 
 @Component({
   selector: 'claim-officer-page',
@@ -14,6 +17,7 @@ import { Report } from '../model/Report';
   styleUrls: ['./claim-officer-page.component.css']
 })
 export class ClaimOfficerPageComponent implements OnInit {
+  reportDialog: MatDialogRef<ReportDialogComponent>;
   claims: Claim[];
   c: Claim = new Claim();
   users: any;
@@ -24,6 +28,7 @@ export class ClaimOfficerPageComponent implements OnInit {
   report: any;
 
   constructor(
+    private dialog: MatDialog,
     private claimService: ClaimService,
     private userService: UserService,
     private reportService: ReportService,
@@ -37,6 +42,19 @@ export class ClaimOfficerPageComponent implements OnInit {
             this.users = data;
           });
   }
+
+  openDialog(c) {
+    this.reportService.getReportById(c.claimId)
+      .subscribe(data => {
+        this.reportDialog = this.dialog.open(ReportDialogComponent, {
+          data: {
+            report: data
+          }
+        });
+        console.log(this.report);
+      });
+  }
+
 
   handleLogout() {
     sessionStorage.removeItem('user');
