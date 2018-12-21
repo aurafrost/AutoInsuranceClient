@@ -1,3 +1,6 @@
 .mat-tab-group {
   margin-bottom: 48px;
 }
+form {
+  margin-bottom: 1rem !important;
+}

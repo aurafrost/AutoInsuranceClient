@@ -27,6 +27,7 @@
           <button (click)='showInspectors(c)' class="btn btn-secondary">Assign</button>
           <button (click)='approve(c)' type="button" class="btn btn-secondary">Approve</button>
           <button (click)='decline(c)' type="button" class="btn btn-secondary">Decline</button>
+          <button (click)='viewReport(c)' type="button" class="btn btn-secondary">Report</button>
         </div>
       </div>
       <div class="card-footer text-muted">
@@ -46,7 +47,7 @@
     <tr *ngFor="let u of users"><!--I'm not sure this works. Probably not-->
       <td>{{u.fname}}</td>
       <td>{{u.lname}}</td>
-      <td><button (click)='assignInspector(u.lname)'>Assign</button></td>
+      <td><button (click)='assignInspector(u)'>Assign</button></td>
     </tr>
   </table>
   <button (click)='hider()'>Return</button>

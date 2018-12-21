@@ -85,10 +85,14 @@ export class CoverPageComponent implements OnInit {
             switch (data.type) {
               case 'Customer':
                 sessionStorage.setItem('user', 'customer');
+                sessionStorage.setItem('email', this.email);
+                sessionStorage.setItem('userId', data.userId);
                 return this.$router.navigate(['customer']);
               case 'ClaimOfficer':
                 if (this.adminSecret === ADMIN_SECRET) {
                   sessionStorage.setItem('user', 'claim_officer');
+                  sessionStorage.setItem('email', this.email);
+                  sessionStorage.setItem('userId', data.userId);
                   return this.$router.navigate(['claim_officer']);
                 } else {
                   return alert('incorrect admin secret!');
@@ -96,6 +100,8 @@ export class CoverPageComponent implements OnInit {
               case 'InspectOfficer':
                 if (this.adminSecret === ADMIN_SECRET) {
                   sessionStorage.setItem('user', 'inspect_officer');
+                  sessionStorage.setItem('email', this.email);
+                  sessionStorage.setItem('userId', data.userId);
                   return this.$router.navigate(['inspect_officer']);
                 } else {
                   return alert('Incorrect Admin Secret!');

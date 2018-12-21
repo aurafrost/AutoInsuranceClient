@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {UserDialogComponent} from '../../admin-page/dialog/user-dialog/user-dialog.component';
+import {DetailsDialogComponent} from './details-dialog/details-dialog.component';
+import {ClaimService} from '../../service/claim/claim.service';
+import {Claim} from '../../model/Claim';
 
 @Component({
   selector: 'claim-list',
@@ -6,46 +11,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./claim-list.component.css']
 })
 export class ClaimListComponent implements OnInit {
+  detailsDialogRef: MatDialogRef<DetailsDialogComponent>;
+  private list: any = [];
   details = false;
   current_id;
-  sample_list = [
-    {
-      'claim_id': 'Claim 1',
-      'car_make': 'honda',
-      'car_model' : 'accord',
-      'date_of_incident': '12/17/2018',
-      'description': 'Rear-ended',
-      'estimate_cost': 3000
-    },
-    {
-      'claim_id': 'Claim 2',
-      'car_make': 'toyota',
-      'car_model' : 'crolla',
-      'date_of_incident': '12/17/2017',
-      'description': 'Rear-ended',
-      'estimate_cost': 3400
-    },
-    {
-      'claim_id': 'Claim 3',
-      'car_make': 'BMW',
-      'car_model' : 'FANCY',
-      'date_of_incident': '12/17/2018',
-      'description': 'Rear-ended',
-      'estimate_cost': 999000
-    }
-  ]
 
-  constructor() { }
+  constructor(
+    private httpClaim: ClaimService,
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit() {
-  console.log(window.location);
-  console.log(window.history);
+    this.getClaims();
+    console.log(window.location);
+    console.log(window.history);
   }
 
-  show_detail(id: string) {
-    this.details = true;
-    this.current_id = id;
-    console.log('clicked on: ' + this.current_id);
-    console.log('class id is: ' + id);
+  // show_detail(id: string) {
+  //   this.details = true;
+  //   this.current_id = id;
+  //   console.log('clicked on: ' + this.current_id);
+  //   console.log('class id is: ' + id);
+  // }
+
+  getClaims() {
+    this.httpClaim.getClaims()
+      .subscribe(data => {
+        this.list = data;
+      });
+  }
+
+  openDialog(claim) {
+    console.log(claim);
+    this.detailsDialogRef = this.dialog.open(DetailsDialogComponent, {
+      data: {
+        claim: claim
+      }
+    });
   }
 }
