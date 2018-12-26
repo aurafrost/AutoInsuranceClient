@@ -1,17 +1,17 @@
 <div mat-dialog-title>
   <div mat-dialog-content >
-    <div class="card-header">
+    <div class="card-header text-center">
       Report {{data.report.reportId}} Details
     </div>
     <div class="card-body">
       <p class="card-text">{{data.report.evaluation}}</p>
-      <p class="card-text">Inspect Officer: {{data.report.claimOfficer}}</p>
-      <p class="card-text">Insured Email: {{data.report.insuredEmail}}</p>
-      <p class="card-text">Insured Phone: {{data.report.insuredPhone}}</p>
-      <a href="#" class="btn btn-primary">update</a>
+      <p class="card-text small">Inspect Officer: {{data.report.claimOfficer}}</p>
+      <p class="card-text small">Insured Email: {{data.report.insuredEmail}}</p>
+      <p class="card-text small">Insured Phone: {{data.report.insuredPhone}}</p>
+      <!--<a href="#" class="btn btn-primary">update</a>-->
     </div>
     <div class="card-footer text-muted">
-      {{data.report.estimate}}
+      Estimate Cost of Repairs: ${{data.report.estimate}}
     </div>
   </div>
 </div>
