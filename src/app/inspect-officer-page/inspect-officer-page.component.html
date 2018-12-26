@@ -7,16 +7,16 @@
 
 <br><br>
 
-<h2>Welcome inspector!</h2>
-<div id=reportTable>
-  <table>
+<h2 class="text-center">Welcome inspector!</h2>
+<div id=reportTable class="container">
+  <table class="table table-hover table-striped">
     <tr>
-      <th>Claim ID</th>
+      <th>Report ID</th>
       <th>Policy Number</th>
       <th>Email</th>
       <th>Phone</th>
       <th>Claim Officer</th>
-      <th>View Claim</th>
+      <th>Action</th>
     </tr>
     <tr *ngFor="let r of reports">
       <td>{{r.reportId}}</td> <!-- Just to be sure: reportId=claimId right? -->
@@ -24,12 +24,12 @@
       <td>{{r.insuredEmail}}</td>
       <td>{{r.insuredPhone}}</td>
       <td>{{r.claimOfficer}}</td>
-      <td><button (click)='showForm(r)'>View</button></td>
+      <td><button class="btn btn-primary" (click)='showForm(r)'>Write</button></td>
     </tr>
   </table>
 </div>
-<div id='reportForm' style='display: none'>
-  Report: <textarea id='evaluation' rows='3' cols='200'></textarea><br>
-  Projected Estimate: <input type='text' id='estimate'><br><!-- Estimated cost of repairs goes here. -->
-  <button (click)='submitReport(estimate,evaluation)'>Submit Report</button>
+<div id='reportForm' class="container" style='display: none'>
+  Report: <textarea [(ngModel)]="evaluation" id='evaluation' rows='3' cols='200'></textarea><br>
+  Projected Estimate: <input [(ngModel)]="estimate" type='text' id='estimate'><br><!-- Estimated cost of repairs goes here. -->
+  <button class="btn btn-primary" (click)='submitReport()'>Submit Report</button>
 </div>

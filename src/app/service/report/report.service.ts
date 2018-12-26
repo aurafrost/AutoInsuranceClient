@@ -22,13 +22,17 @@ export class ReportService {
     return this.http.post(`${BASE_URL}/reports`, report, {headers: headers});
   }
 
+  public  getReportsByInspectOfficer(email) {
+    return this.http.get<Report[]>(`${BASE_URL}/reports/inspect_officer/${email}`);
+  }
+
   public getReportById(id) {
     return this.http.get<Report>(`${BASE_URL}/reports/${id}`);
   }
 
-  public updateReport(reportId, report){
+  public updateReport(reportId, report) {
     const headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin', '*');
-    return this.http.post(`${BASE_URL}/reports/${reportId}`, report, {headers: headers});
+    return this.http.put<Report>(`${BASE_URL}/reports/${reportId}`, report, {headers: headers});
   }
 }

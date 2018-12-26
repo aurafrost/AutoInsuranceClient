@@ -18,6 +18,8 @@ export class InspectOfficerPageComponent implements OnInit {
   reportTable:HTMLElement;
   reportForm:HTMLElement;
   reportId:number;
+  estimate = '';
+  evaluation = '';
 
   //need service
   constructor(
@@ -28,7 +30,13 @@ export class InspectOfficerPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.reportService.getReports().subscribe(data=>{this.reports=data;});
+    const email = sessionStorage.getItem('email');
+    this.reportService.getReportsByInspectOfficer(email)
+      .subscribe(
+        data => {
+          this.reports = data;
+          console.log(this.reports);
+        });
   }
 
   handleLogout() {
@@ -45,14 +53,20 @@ export class InspectOfficerPageComponent implements OnInit {
     this.reportForm.style.display = 'block';
   }
 
-  submitReport(estimate,evaluation){
-    //send report to database
-    this.report.estimate=estimate;
-    this.report.evaluation=evaluation;
-    this.reportService.updateReport(this.report.reportId,this.report);
-    this.reportTable=document.getElementById('reportTable') as HTMLElement;
-    this.reportTable.style.display='block';
-    this.reportForm=document.getElementById('reportForm') as HTMLElement;
-    this.reportForm.style.display='none';
+  submitReport() {
+    console.log(this.estimate);
+    console.log(this.evaluation);
+    // send report to database
+    this.report.estimate = this.estimate;
+    this.report.evaluation = this.evaluation;
+
+    this.reportService.updateReport(this.report.reportId, this.report)
+      .subscribe(data => {
+        this.reportTable = document.getElementById('reportTable') as HTMLElement;
+        this.reportTable.style.display = 'block';
+        this.reportForm = document.getElementById('reportForm') as HTMLElement;
+        this.reportForm.style.display = 'none';
+        alert('Report updated!');
+      });
   }
 }
